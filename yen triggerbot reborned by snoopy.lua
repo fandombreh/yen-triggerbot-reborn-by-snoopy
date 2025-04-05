@@ -1,4 +1,4 @@
-﻿getgenv().yen = {
+﻿getgenv().yenreborn = {
     triggerbot = {
         settings = {
             enabled = true,
