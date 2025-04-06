@@ -81,7 +81,7 @@ sliderHandle.Position = UDim2.new(0, (yen.triggerbot.settings.delay * 100), 0, 0
 sliderHandle.BackgroundColor3 = Color3.fromRGB(0, 255, 0)
 sliderHandle.Parent = delaySlider
 
--- Slider Dragging Logic
+
 local dragging = false
 local dragStartPos, sliderStartPos
 
@@ -154,7 +154,7 @@ local function applyPrediction()
     
 end
 
--- FOV Logic (Placeholder)
+
 local function handleFOV()
     local fovSettings = yen.triggerbot.fov
     if fovSettings.enabled then
