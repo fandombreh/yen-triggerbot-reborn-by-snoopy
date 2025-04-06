@@ -1,4 +1,4 @@
-﻿getgenv().yen = {
+etgenv().yen = {
     triggerbot = {
         settings = {
             enabled = true,
@@ -21,7 +21,6 @@
         safe_mode = true,
         version = "1.0 first release"
     },
- 
     custom = {
         enableLogging = false,  
         autoReload = true       
@@ -55,6 +54,7 @@ toggleButton.Text = "Enable Triggerbot"
 toggleButton.TextColor3 = Color3.fromRGB(255, 255, 255)
 toggleButton.BackgroundColor3 = Color3.fromRGB(50, 50, 50)
 toggleButton.Parent = Frame
+
 toggleButton.MouseButton1Click:Connect(function()
     yen.triggerbot.settings.enabled = not yen.triggerbot.settings.enabled
     toggleButton.Text = yen.triggerbot.settings.enabled and "Disable Triggerbot" or "Enable Triggerbot"
@@ -81,9 +81,9 @@ sliderHandle.Position = UDim2.new(0, (yen.triggerbot.settings.delay * 100), 0, 0
 sliderHandle.BackgroundColor3 = Color3.fromRGB(0, 255, 0)
 sliderHandle.Parent = delaySlider
 
+-- Slider Dragging Logic
 local dragging = false
-local dragStartPos = nil
-local sliderStartPos = nil
+local dragStartPos, sliderStartPos
 
 sliderHandle.InputBegan:Connect(function(input)
     if input.UserInputType == Enum.UserInputType.MouseButton1 then
@@ -98,9 +98,7 @@ game:GetService("UserInputService").InputChanged:Connect(function(input)
         local delta = input.Position.X - dragStartPos.X
         local newPos = math.clamp(sliderStartPos + delta, 0, delaySlider.AbsoluteSize.X)
         sliderHandle.Position = UDim2.new(0, newPos, 0, 0)
-        
-        
-        yen.triggerbot.settings.delay = (newPos / delaySlider.AbsoluteSize.X) * 0.1  -- Max delay of 0.1s
+        yen.triggerbot.settings.delay = (newPos / delaySlider.AbsoluteSize.X) * 0.1
         delayLabel.Text = "Trigger Delay: " .. string.format("%.3f", yen.triggerbot.settings.delay)
     end
 end)
@@ -111,9 +109,8 @@ game:GetService("UserInputService").InputEnded:Connect(function(input)
     end
 end)
 
-local dragInput = nil
-local dragStart = nil
-local startPos = nil
+
+local dragInput, dragStart, startPos
 
 Title.InputBegan:Connect(function(input)
     if input.UserInputType == Enum.UserInputType.MouseButton1 then
@@ -141,14 +138,11 @@ local function handleTriggerbot()
     local settings = yen.triggerbot.settings
     local keybind = settings.keybind:lower()
 
-    
     game:GetService("UserInputService").InputBegan:Connect(function(input, gameProcessed)
         if gameProcessed then return end
         if input.KeyCode == Enum.KeyCode[keybind:upper()] then
             if settings.enabled then
-                
                 wait(settings.delay)
-                
             end
         end
     end)
@@ -157,14 +151,14 @@ end
 
 local function applyPrediction()
     local prediction = yen.triggerbot.prediction.settings
-
+    
 end
 
-
+-- FOV Logic (Placeholder)
 local function handleFOV()
     local fovSettings = yen.triggerbot.fov
     if fovSettings.enabled then
-    
+       
     end
 end
 
