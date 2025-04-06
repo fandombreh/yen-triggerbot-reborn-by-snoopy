@@ -1,4 +1,4 @@
-etgenv().yen = {
+getgenv().yen = {
     triggerbot = {
         settings = {
             enabled = true,
